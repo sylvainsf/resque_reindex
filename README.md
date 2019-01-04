@@ -22,7 +22,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add resque_reindex to any class you'd like to use it with:
+
+```ruby
+require 'resque_reindex'
+class Foo
+  extend ResqueReindex
+  
+  def self.reindex_later
+    resque_reindex
+  end
+end
+```
+
 
 ## Development
 
