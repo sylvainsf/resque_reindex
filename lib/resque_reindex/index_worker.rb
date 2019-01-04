@@ -5,7 +5,7 @@ class ResqueReindex::IndexWorker
   @rails_version = Rails::VERSION::STRING
 
   def self.perform(klass, ids)
-    objs = klass.constantize.find_all_by_id(ids)
+    objs = klass.constantize.where(id: ids)
     Sunspot.index!(objs)
   end
 end
