@@ -1,4 +1,4 @@
-class IndexWorker
+class ResqueReindex::IndexWorker
   #TODO make this overridable so different classes don't share the same queue
   @queue = :resque_reindex
 
@@ -14,7 +14,7 @@ class IndexWorker
     Sunspot.index!(objs)
   end
 
-  def rails_3?
+  def self.rails_3?
     @rails_version.start_with?("3.")
   end
 end

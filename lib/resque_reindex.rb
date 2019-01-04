@@ -1,8 +1,9 @@
 require "resque_reindex/version"
+require "resque_reindex/index_worker"
 
 module ResqueReindex
-  def self.resque_reindex
-    ids = self.pluck(:id)
-    ResqueReindex::IndexWorker.enqueue(self.class.to_s, ids)
+  def resque_reindex
+    ids = pluck(:id)
+    Resque.enqueue(ResqueReindex::IndexWorker, self.name.to_s, ids)
   end
 end
